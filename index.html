@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alex Anderson</title>
+<meta name="description" content="Alex Anderson is a cultural theorist and strategy leader." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111111;
+    --grey: #8a8a8a;
+    --rule: #d9d9d9;
+    --blue: #2440ff;
+    --col: 550px;
+    --card-1: #b7c4db;
+    --card-2: #ff432a;
+    --card-3: #4e4e4e;
+    --card-4: #dfd6ca;
+    --card-5: #550000;
+    --card-6: #1c2fc9;
+    --card-7: #06402b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--ink);
+    background: #ffffff;
+    transition: background-color 1400ms ease;
+    padding: 0 24px;
+    text-align: left;
+  }
+
+  main {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 0 0 12vh;
+  }
+
+  body.tinted { background-color: #b7c4db; }
+
+  /* ---------- masthead: sits at the vertical middle, copy starts there ---------- */
+
+  .masthead {
+    padding-top: 22vh;
+    text-align: center;
+    padding-bottom: 140px;
+  }
+
+  .masthead .name {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    text-align: center;
+    margin-bottom: 140px;
+  }
+
+  .masthead .statement {
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  /* ---------- type ---------- */
+
+  p { margin-bottom: 1.35em; }
+  p:last-child { margin-bottom: 0; }
+
+  section { margin-top: 96px; }
+
+  .label {
+    font-size: 14px;
+    color: var(--grey);
+    margin-bottom: 28px;
+  }
+
+  /* ---------- links: bracketed, blue, 14px, invert on hover ---------- */
+
+  a {
+    font-size: 14px;
+    color: var(--blue);
+    text-decoration: none;
+    padding: 1px 3px;
+    border-radius: 3px;
+    transition: background 120ms ease, color 120ms ease;
+  }
+
+  a::before { content: "["; }
+  a::after  { content: "]"; }
+
+  a:hover, a:focus-visible {
+    background: var(--blue);
+    color: #ffffff;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+  }
+
+  /* arrow links inside cards: no brackets */
+  a.arrow::before, a.arrow::after { content: none; }
+
+  /* ---------- selected work: large offset cards ---------- */
+
+  .bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    text-align: left;
+  }
+
+  .carousel {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: max(24px, calc(50vw - var(--col) / 2));
+    padding: 4px 24px 24px max(24px, calc(50vw - var(--col) / 2));
+    scrollbar-width: none;
+  }
+  .carousel::-webkit-scrollbar { display: none; }
+
+  .work-item {
+    flex: 0 0 380px;
+    scroll-snap-align: start;
+  }
+
+  a.card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    padding: 0;
+    font-size: 17px;
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: box-shadow 160ms ease, transform 160ms ease;
+  }
+
+  .work-item:nth-child(7n+1) a.card { background: var(--card-1); }
+  .work-item:nth-child(7n+2) a.card { background: var(--card-2); }
+  .work-item:nth-child(7n+3) a.card { background: var(--card-3); }
+  .work-item:nth-child(7n+4) a.card { background: var(--card-4); }
+  .work-item:nth-child(7n+5) a.card { background: var(--card-5); }
+  .work-item:nth-child(7n+6) a.card { background: var(--card-6); }
+  .work-item:nth-child(7n)   a.card { background: var(--card-7); }
+
+  /* light text on the dark fields */
+  .work-item:nth-child(7n+2) a.card,
+  .work-item:nth-child(7n+3) a.card,
+  .work-item:nth-child(7n+5) a.card,
+  .work-item:nth-child(7n+6) a.card,
+  .work-item:nth-child(7n)   a.card { color: #ffffff; }
+
+  .work-item:nth-child(7n+2) a.card:hover,
+  .work-item:nth-child(7n+3) a.card:hover,
+  .work-item:nth-child(7n+5) a.card:hover,
+  .work-item:nth-child(7n+6) a.card:hover,
+  .work-item:nth-child(7n)   a.card:hover { color: #ffffff; }
+
+  a.card::before, a.card::after { content: none; }
+
+  a.card:hover, a.card:focus-visible {
+    color: var(--ink);
+    box-shadow: 0 8px 24px rgba(17, 17, 17, 0.08);
+    transform: scale(1.015);
+  }
+
+  .card .stack {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 90px;
+  }
+
+  .card .stack img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 14px 36px rgba(17, 17, 17, 0.22);
+    background: #eef1ff;
+  }
+
+  /* rotated layers behind the top image, fanned wide */
+  .card .stack img { transition: transform 200ms ease; }
+  .card .stack img.layer-1 { transform: rotate(-14deg) translate(-26px, 10px); }
+  .card .stack img.layer-2 { transform: rotate(12deg) translate(28px, -12px); }
+
+  /* tilt the top photo slightly when it sits on a pile */
+  .card .stack.stacked img:last-child { transform: rotate(-3deg); }
+
+  /* on hover, the pile spreads further */
+  a.card:hover .stack img.layer-1,
+  a.card:focus-visible .stack img.layer-1 { transform: rotate(-19deg) translate(-40px, 14px); }
+
+  a.card:hover .stack img.layer-2,
+  a.card:focus-visible .stack img.layer-2 { transform: rotate(17deg) translate(42px, -16px); }
+
+  a.card:hover .stack.stacked img:last-child,
+  a.card:focus-visible .stack.stacked img:last-child { transform: rotate(-5deg); }
+
+  .card .caption {
+    position: absolute;
+    left: 24px;
+    bottom: 20px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .card .name { font-weight: 500; }
+
+  .card .desc {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+
+
+  /* ---------- thinking: horizontal cards + pop-ups ---------- */
+
+  .think-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .think-card {
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 0 20px 0 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    text-align: left;
+    transition: box-shadow 160ms ease, transform 160ms ease;
+  }
+
+  .think-card:hover, .think-card:focus-visible {
+    box-shadow: 0 6px 18px rgba(17, 17, 17, 0.07);
+    transform: scale(1.012);
+  }
+
+  .think-card:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+  }
+
+  .think-card img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    flex: 0 0 auto;
+    background: #eef1ff;
+  }
+
+  .think-card .meta { padding: 16px 0; }
+
+  .think-card .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .think-card .eyebrow {
+    font-size: 14px;
+    color: var(--grey);
+  }
+
+  .think-card .title {
+    font-weight: 500;
+  }
+
+  .think-card .go {
+    color: var(--blue);
+    font-size: 20px;
+    flex: 0 0 auto;
+    transition: transform 120ms ease;
+  }
+
+  .think-card:hover .go { transform: translateX(3px); }
+
+  dialog.think-modal {
+    margin: auto;
+    border: none;
+    border-radius: 24px;
+    padding: 0;
+    width: min(940px, calc(100vw - 48px));
+    height: calc(100vh - 48px);
+    max-height: none;
+    text-align: left;
+    color: var(--ink);
+    overflow: auto;
+  }
+
+  dialog.think-modal::backdrop {
+    background: rgba(17, 17, 17, 0.75);
+  }
+
+  .think-modal .content {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 72px 24px 72px;
+  }
+
+  .think-modal .eyebrow {
+    font-size: 14px;
+    color: var(--grey);
+    margin-bottom: 8px;
+  }
+
+  .think-modal h2 {
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .think-modal .dek {
+    color: var(--grey);
+    margin-bottom: 16px;
+  }
+
+  .think-modal .byline {
+    font-size: 14px;
+    color: var(--grey);
+    margin-bottom: 32px;
+  }
+
+  .think-modal hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin-bottom: 48px;
+  }
+
+  .think-modal img.inline {
+    display: block;
+    width: min(780px, 84vw);
+    margin: 64px 0 64px calc((100% - min(780px, 84vw)) / 2);
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 16px;
+    background: #eef1ff;
+  }
+
+  .think-modal .close {
+    font: inherit;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #ededed;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease;
+  }
+
+  .think-modal .close:hover, .think-modal .close:focus-visible {
+    background: var(--blue);
+    color: #ffffff;
+  }
+
+  /* ---------- quotes ---------- */
+
+  blockquote { margin-bottom: 48px; }
+  blockquote:last-child { margin-bottom: 0; }
+  blockquote p { margin-bottom: 14px; }
+
+  cite {
+    font-style: normal;
+    display: block;
+    padding-left: 28px;
+  }
+
+  cite .name { font-weight: 500; }
+
+  /* ---------- case studies: wide-card carousel, caption below ---------- */
+
+  .case-item {
+    flex: 0 0 640px;
+    scroll-snap-align: start;
+  }
+
+  .case-item .title {
+    font-weight: 500;
+    display: block;
+    margin-top: 16px;
+  }
+
+  .case-item .sub {
+    color: var(--grey);
+    display: block;
+  }
+
+  a.case-fig {
+    display: block;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: box-shadow 160ms ease, transform 160ms ease;
+  }
+
+  a.case-fig::before, a.case-fig::after { content: none; }
+
+  a.case-fig:hover, a.case-fig:focus-visible {
+    background: transparent;
+    box-shadow: 0 8px 24px rgba(17, 17, 17, 0.08);
+    transform: scale(1.015);
+  }
+
+  a.case-fig img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background: #eef1ff;
+  }
+
+  /* ---------- green supper image row ---------- */
+
+  .supper-row {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: max(24px, calc(50vw - var(--col) / 2));
+    padding: 8px 24px 24px max(24px, calc(50vw - var(--col) / 2));
+    scrollbar-width: none;
+  }
+  .supper-row::-webkit-scrollbar { display: none; }
+
+  .supper-row img {
+    display: block;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: auto;
+    border-radius: 18px;
+  }
+
+  .supper-row img:nth-child(1) { height: 420px; }
+  .supper-row img:nth-child(2) { height: 460px; }
+  .supper-row img:nth-child(3) { height: 400px; }
+  .supper-row img:nth-child(4) { height: 440px; }
+  .supper-row img:nth-child(5) { height: 410px; }
+
+  @media (max-width: 540px) {
+    .supper-row img:nth-child(n) { height: 300px; }
+  }
+
+  /* ---------- agency hover images ---------- */
+
+  .agency {
+    color: var(--ink);
+    transition: color 120ms ease;
+  }
+
+  .agency:hover { color: var(--blue); }
+
+  #hover-img {
+    position: fixed;
+    max-width: 340px;
+    max-height: 340px;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 50;
+    display: none;
+    box-shadow: 0 12px 40px rgba(17, 17, 17, 0.18);
+  }
+
+  /* ---------- bottom links ---------- */
+
+  .connect {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  @media (max-width: 540px) {
+    section { margin-top: 72px; }
+    .masthead { padding-top: 18vh; padding-bottom: 96px; }
+    .masthead .name { margin-bottom: 96px; white-space: normal; }
+    .masthead .statement { font-size: 28px; }
+    .carousel { padding-left: 24px; scroll-padding-left: 24px; }
+    .work-item { flex-basis: 82vw; }
+    a.card { height: 480px; }
+    .case-item { flex-basis: 86vw; }
+    .card img { height: 220px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    a, .card, a.case-fig, .think-card, .think-card .go { transition: none; transform: none !important; }
+    .card .stack img { transition: none; }
+    .carousel { scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <header class="masthead">
+    <h1 class="name">Alex Anderson</h1>
+    <p class="statement">A brand strategy leader helping teams express themselves uniquely (&amp; take themselves less seriously).</p>
+  </header>
+
+  <section class="intro" style="margin-top:0">
+    <p class="label">Who Am I?</p>
+    <p>Hi there &mdash; I'm Alex Anderson. I'm a Principal at TRIPTK, a global brand &amp; innovation studio. We partner with C-suite leaders at key inflection points to reposition or reorient for relevance and growth.</p>
+
+    <p>As a member of the executive leadership team for North America, my day-to-day is focused on the health of our team and efficacy of our work product as a studio.</p>
+  </section>
+
+  <section>
+    <p class="label">Selected work</p>
+
+    <div class="bleed">
+      <div class="carousel" id="carousel" tabindex="0" aria-label="Selected work carousel">
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-01.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-02.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/the-google-logo-on-an-office-building.jpg" alt="The Google logo on an office building" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">Google Brand Studio</span>
+              <span class="desc">Exploring and enabling flexible brand storytelling at scale while embedded on the team.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-03.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-04.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/the-luna-luna-carousel-by-keith-haring-lit-at-ni.jpg" alt="The Luna Luna carousel by Keith Haring, lit at night" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">Luna Luna</span>
+              <span class="desc">Relaunching an art amusement park with Drake (DreamCrew) and Something Special Studios after 35 years dormant.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-05.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-06.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/mustafa-suleyman-presenting-copilot-as-your-ai-c.jpg" alt="Mustafa Suleyman presenting Copilot as Your AI Companion on stage" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">Microsoft Copilot</span>
+              <span class="desc">Building C-suite alignment around a shared internal vision for Microsoft&rsquo;s leading AI tool.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-07.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-08.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/the-bwt-alpine-formula-one-car.jpg" alt="The BWT Alpine Formula One car" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">Alpine Cars &amp; Racing</span>
+              <span class="desc">Gearing up a French luxury automotive brand for stateside market entry.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-09.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-10.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/american-express-campaign-imagery.jpg" alt="American Express campaign imagery" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">American Express</span>
+              <span class="desc">Crafting a fresh positioning for the Platinum offering, alongside a suite of new cardholder benefits.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-11.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-12.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/a-group-of-athletes-in-adidas-training-wear.jpg" alt="A group of athletes in adidas training wear" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">adidas</span>
+              <span class="desc">Building a new innovation platform for the adiClub retail membership experience.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-13.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-14.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/the-north-face-x-gucci-campaign-models-at-a-camp.jpg" alt="The North Face x Gucci campaign, models at a campsite" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">VF Corp</span>
+              <span class="desc">Identifying billion-dollar acquisition opportunities for the world&rsquo;s largest apparel and footwear portfolio.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-15.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-16.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/the-twitter-bird-logo-on-its-headquarters-buildi.jpg" alt="The Twitter bird logo on its headquarters building" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">Twitter</span>
+              <span class="desc">Developing an actionable moderator toolkit to help online communities stay healthy and lively over time.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-17.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-18.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/screens-from-the-wetransfer-ideas-report.jpg" alt="Screens from the WeTransfer Ideas Report" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">WeTransfer</span>
+              <span class="desc">Articulating key insights and defining structure for the company&rsquo;s most important digital thought leadership properties.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-19.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-20.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/an-nba-retail-store-with-merchandise.jpg" alt="An NBA retail store with merchandise" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">The NBA</span>
+              <span class="desc">Finding a key positioning for the league&rsquo;s suite of digital offerings on a crowded digital court.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-21.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-22.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/the-driver-display-inside-a-cadillac-escalade-iq.jpg" alt="The driver display inside a Cadillac Escalade IQL" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">General Motors</span>
+              <span class="desc">Correcting risky driver behavior by reimagining the driver app experience.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-23.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-24.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/the-afresh-logo-surrounded-by-floating-produce.jpg" alt="The Afresh logo surrounded by floating produce" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">Afresh</span>
+              <span class="desc">Designing a purpose-built brand to eliminate food waste, with machine intelligence organizing the complexity of fresh produce.</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="work-item">
+          <a class="card" href="#" target="_blank" rel="noopener">
+            <div class="stack stacked" data-stack="3">
+              <img src="images/layer-25.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/layer-26.jpg" alt="" aria-hidden="true" loading="lazy" />
+              <img src="images/a-starbucks-storefront-concept-rendering.jpg" alt="A Starbucks storefront concept rendering" loading="lazy" />
+            </div>
+            <span class="caption">
+              <span class="name">Starbucks</span>
+              <span class="desc">Exploring uses of machine learning, the blockchain, and other nascent tech.</span>
+            </span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <p class="label">About Me</p>
+    <p>With a focus on brand, innovation, and growth-strategy projects, I've led ambitious assignments in North America, Latin America, Europe, and APAC for early-stage startups and Fortune 50 organizations alike.</p>
+
+    <p>My work has been presented at the Obama White House and the Kennedy Center, and recognized by <span class="agency" data-img-key="its-nice-that">It&rsquo;s Nice That</span>, the <span class="agency" data-img-key="new-york-times">New York Times</span>, and <span class="agency" data-img-key="communication-arts">Communication Arts</span>.</p>
+
+    <p>I founded <a href="#">Good Measure</a>, a pop-up creative agency that hosted community projects across the United States, and have lectured and critiqued for programs including SVA Design for Social Innovation, Accenture Liquid Studios, and the UH Bauer College of Business.</p>
+
+    <p>I think often of how to build community in my industry, and consider myself very lucky to work with kind and smart people.</p>
+  </section>
+
+  <section>
+    <p class="label">TRIPTK case studies</p>
+
+    <div class="bleed">
+      <div class="carousel" aria-label="TRIPTK case studies carousel" tabindex="0">
+
+        <div class="case-item">
+          <a class="case-fig" href="https://triptk.com/work/wetransfer/" target="_blank" rel="noopener" aria-label="WeTransfer case study on triptk.com">
+            <img src="images/the-wetransfer-emerging-creative-hubs-index-on-a.jpg" alt="The WeTransfer Emerging Creative Hubs Index on a laptop" loading="lazy" />
+          </a>
+          <span class="title">WeTransfer</span>
+          <span class="sub">Building equity for the global creative community</span>
+        </div>
+
+        <div class="case-item">
+          <a class="case-fig" href="https://triptk.com/work/dickies/" target="_blank" rel="noopener" aria-label="Dickies case study on triptk.com">
+            <img src="images/a-dickies-logo-tattoo-in-progress.jpg" alt="A Dickies logo tattoo in progress" loading="lazy" />
+          </a>
+          <span class="title">Dickies</span>
+          <span class="sub">Evolving an American icon for a new era of growth</span>
+        </div>
+
+        <div class="case-item">
+          <a class="case-fig" href="https://triptk.com/work/marriott-international/" target="_blank" rel="noopener" aria-label="Marriott International case study on triptk.com">
+            <img src="images/a-luxury-hotel-boardroom.jpg" alt="A luxury hotel boardroom" loading="lazy" />
+          </a>
+          <span class="title">Marriott International</span>
+          <span class="sub">Re-defining the future of global luxury experiences</span>
+        </div>
+
+        <div class="case-item">
+          <a class="case-fig" href="https://triptk.com/work/marshall-group/" target="_blank" rel="noopener" aria-label="Marshall Group case study on triptk.com">
+            <img src="images/musicians-around-a-marshall-acton-iii-speaker.jpg" alt="Musicians around a Marshall Acton III speaker" loading="lazy" />
+          </a>
+          <span class="title">Marshall Group</span>
+          <span class="sub">Creating a culture-led growth strategy for an audio pioneer</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="kind-words">
+    <p class="label">Kind words</p>
+
+    <blockquote>
+      <p>&ldquo;Ambidextrous, empathetic, and as sharp as they come, Alex blew us away. As the team&rsquo;s culture and qualitative lead, he developed a bespoke research framework that immerses leading-edge consumers in rich &lsquo;what-if&rsquo; worlds, propelling respondents into the future to extract true foresight.&rdquo;</p>
+      <cite><span class="name">Giulia Gasperi</span><br />Founder at <a href="#">Data is Magic</a>; former Head of Data Strategy at TRIPTK</cite>
+    </blockquote>
+
+    <blockquote>
+      <p>&ldquo;It felt like every day of the project someone else would tell me how great it was working with him. He dives right into a new team as if they&rsquo;re old friends and he never leaves anyone hanging. He has keen insights and communicates them convincingly, and he&rsquo;s not afraid to give direct feedback if it makes the work better.&rdquo;</p>
+      <cite><span class="name">Jacob Heftmann</span><br />CEO &amp; Co-founder at <a href="#">XXIX</a>; Design Director at <a href="#">Grilli Type</a></cite>
+    </blockquote>
+
+    <blockquote>
+      <p>&ldquo;There are good strategists, and then there are great ones. Alex is one of the great ones. His sharp thinking transcends brand building and permeates into how he thinks about innovation and change. The quality I admire most is his singular focus for impact, tackled with a healthy balance of candor and kindness.&rdquo;</p>
+      <cite><span class="name">Jeffrey Effendi</span><br />Head of Strategy at <a href="#">DrawHistory</a>; former Head of Brand at <a href="#">Change.org</a></cite>
+    </blockquote>
+  </section>
+
+  <section>
+    <p class="label">Thinking</p>
+
+    <div class="think-list">
+      <button class="think-card" type="button" onclick="document.getElementById('think-1').showModal()">
+        <img src="images/vending-machines-on-a-tokyo-street.jpg" alt="Vending machines on a Tokyo street" loading="lazy" />
+        <span class="meta">
+          <span class="eyebrow">On Conviction</span>
+          <span class="title">The case for taking brands less seriously</span>
+        </span>
+        <span class="go" aria-hidden="true">&rarr;</span>
+      </button>
+
+      <button class="think-card" type="button" onclick="document.getElementById('think-2').showModal()">
+        <img src="images/abstract-long-exposure-sunset.jpg" alt="Abstract long-exposure sunset" loading="lazy" />
+        <span class="meta">
+          <span class="eyebrow">Leadership Style</span>
+          <span class="title">Foresight is a contact sport</span>
+        </span>
+        <span class="go" aria-hidden="true">&rarr;</span>
+      </button>
+
+      <button class="think-card" type="button" onclick="document.getElementById('think-3').showModal()">
+        <img src="images/a-robotic-hand-reaching-toward-a-human-hand.jpg" alt="A robotic hand reaching toward a human hand" loading="lazy" />
+        <span class="meta">
+          <span class="eyebrow">Agentic Strategy</span>
+          <span class="title">Notes from the Green Supper</span>
+        </span>
+        <span class="go" aria-hidden="true">&rarr;</span>
+      </button>
+    </div>
+
+    <dialog class="think-modal" id="think-1">
+      <button class="close" type="button" onclick="this.closest('dialog').close()" aria-label="Close">&#10005;</button>
+      <div class="content">
+        <h2>The case for taking brands less seriously</h2>
+        <p class="dek">Occaecat tempore eveniet incididunt sapiente culpa officia voluptatum earum</p>
+        <p class="byline">June 9, 2026 &middot; Alex Anderson</p>
+        <hr />
+        <p>Eos ex tenetur debitis voluptates cumque sunt nostrud earum. Impedit repellendus lorem officiis odio mollit ullamco excepturi. Consectetur adipiscing dolor cumque qui voluptas elit doloribus. Autem tenetur anim distinctio officia necessitatibus deleniti consectetur possimus exercitation excepteur. Ex similique sapiente voluptas delectus sint quos praesentium a quo sed recusandae. Maxime possimus fugiat soluta eligendi veniam autem reiciendis laboris esse alias. Nobis hic elit voluptates tempor dolores quo eu sapiente mollit sit non anim maxime. Distinctio libero necessitatibus odio ipsum.</p>
+        <p>Consequat maiores proident assumenda labore itaque soluta non delectus facere earum tempore possimus distinctio lorem repellat. Provident necessitatibus elit mollit nulla pariatur quis eos sed aliqua minim amet debitis sit blanditiis at. Nisi excepteur distinctio deleniti magna cillum velit eos doloribus eu dignissimos atque. Obcaecati a repudiandae aliquip adipiscing quas nihil animi omnis sint accusamus laboris vero reiciendis sunt. Consectetur deserunt amet minus in do esse officiis delectus assumenda officia maiores debitis perferendis. Minus obcaecati assumenda et corrupti commodo culpa incididunt. Aliqua enim quas corrupti velit possimus vero consequat dolor do qui necessitatibus. Reiciendis .</p>
+        <p>Non distinctio exercitation proident repellendus occaecat tenetur ullamco impedit atque delectus a amet cupiditate. Praesentium amet velit non cupiditate duis mollitia assumenda culpa odio nostrud cumque distinctio asperiores. Asperiores id dolore eiusmod minim duis eu cillum repellat culpa odio similique delectus eos nobis. Animi aliquip deleniti id hic duis ullamco obcaecati eiusmod placeat aliqua cumque in. Animi aliquip optio enim deserunt ad odio soluta atque asperiores. Necessitatibus ducimus laboris tempor atque sit.</p>
+        <img class="inline" src="images/placeholder.jpg" alt="" loading="lazy" />
+        <p>Quis facere aliquip eiusmod sint est omnis esse. Debitis cillum est velit ullamco temporibus optio atque vero. Molestias exercitation sunt excepturi eiusmod adipiscing dolor atque debitis quo quod dolore rerum nisi vero. Voluptates tempore accusamus pariatur sunt dolores cupidatat at cum ad blanditiis. Officiis quis mollitia mollit impedit dolores eiusmod cupiditate excepteur. Quos laborum similique exercitation quis officia consectetur quod aliqua odio enim dolor deleniti. Tenetur voluptates voluptate exercitation sapiente cupiditate enim reiciendis fugiat nulla reprehenderit irure excepturi. Laboris voluptatibus atque commodo proident irure sed molestias nulla corrupti repellendus repellat. Incididunt at vero dolore officiis repellendus autem repellat rerum dolor. Mollitia eu accusamus earum adipiscing possimus amet et libero.</p>
+        <p>Commodo aute accusamus ducimus minus quod fugiat veniam anim earum. Nulla doloribus excepturi sapiente autem deserunt est molestias. Recusandae deserunt facere mollitia ducimus officia incididunt aliqua reiciendis nobis velit proident quas corrupti eligendi. Saepe minim ea voluptatibus optio nulla voluptate vero assumenda qui. Tenetur quo nam nihil voluptatibus cillum eiusmod perferendis. Eos exercitation odio minim aute ad quibusdam est cumque. Minus cillum cupiditate autem commodo earum culpa ex repellendus asperiores placeat atque blanditiis at. Ipsum sint doloribus autem consectetur elit laborum accusamus proident fugiat praesentium in non dignissimos. Vero officiis eu tempore hic omnis ea sunt nihil proident praesentium laboris. Ex sit atque duis enim sapiente eligendi.</p>
+        <p>Temporibus sapiente tempore doloribus obcaecati lorem ea quibusdam debitis nam dolores quod. Tenetur nisi optio cumque proident lorem blanditiis reiciendis cupidatat saepe maiores placeat dolores. Debitis doloribus cupidatat cum perferendis lorem impedit assumenda maxime mollitia. Tenetur at deleniti consectetur placeat voluptate minus dignissimos nulla. Dolor nam iusto facere quos reprehenderit saepe accusamus earum. Eveniet reiciendis tempor dignissimos exercitation voluptas magna libero quibusdam consectetur. Delectus esse quis quod ducimus quos sunt doloribus id similique. Magna enim alias nobis eveniet reiciendis incididunt eu corrupti dignissimos tempore anim. Quod fugiat itaque accusamus provident officia laborum elit maxime excepturi repellendus at odio sint. Cillum quibusdam in iusto necessitatibus perferendis esse.</p>
+        <img class="inline" src="images/placeholder.jpg" alt="" loading="lazy" />
+        <p>Autem cum quas quod est aliquip proident dolores magna laboris. Minus obcaecati tenetur exercitation excepteur tempor labore consectetur qui sed doloribus. Animi ducimus ex fugiat nostrud officia quod anim tenetur debitis optio eu id praesentium saepe. Impedit culpa debitis accusamus provident a nisi ad tempor sit ipsum recusandae excepturi nihil voluptatum cupidatat. Velit reprehenderit elit sit impedit in labore cumque eos consequat ad saepe quos do. Et perferendis consequat eiusmod ducimus ex repellendus quis sint elit a blanditiis.</p>
+        <p>Officiis impedit provident odio accusamus laborum et fugiat nam assumenda alias. Libero facere repellat non voluptas magna odio aliqua. Nulla nostrud reprehenderit et proident assumenda tempor ut quis voluptatibus voluptates sapiente. Exercitation molestias eiusmod commodo asperiores sed quibusdam minus officiis adipiscing perferendis dignissimos quis. Cupiditate minim quos sed nihil labore accusamus molestias consequat cumque aliquip nostrud. Laborum sapiente proident provident mollitia reiciendis quo itaque ullamco consequat officiis perferendis alias repellat. Deleniti velit non nobis impedit alias cupiditate nostrud. Distinctio commodo dolore tempor corrupti asperiores molestias possimus excepturi libero dignissimos cupiditate alias sapiente. Perferendis ea reprehenderit excepturi cupiditate magna debitis blanditiis. Rerum soluta cumque ad labore duis incididunt perferendis hic vero laborum mollitia cum.</p>
+        <p>Maxime dolores saepe animi asperiores delectus cillum elit in vero officia duis nisi. Facere incididunt exercitation odio laboris proident accusamus magna perferendis ad. Qui fugiat reiciendis repellendus consectetur nobis earum praesentium officia. Tenetur id voluptas debitis soluta sint itaque aliqua eos placeat non. Asperiores cumque voluptatibus earum enim maxime reiciendis voluptas. Libero necessitatibus ipsum sint corrupti ex quos voluptatibus. Praesentium perferendis facere maiores placeat dolores debitis quos consequat delectus quibusdam aute esse. Dolor voluptas do nobis omnis quod praesentium amet quis ipsum nihil odio. Dignissimos eligendi itaque mollitia impedit rerum aliquip libero in possimus amet fugiat accusamus nobis commodo. Facere accusamus voluptatibus voluptatum omnis ducimus repellendus similique earum qui hic quod.</p>
+        <img class="inline" src="images/placeholder.jpg" alt="" loading="lazy" />
+        <p>Quis dolore consequat proident reprehenderit mollit adipiscing ullamco vero voluptate recusandae exercitation quod excepteur. Veniam assumenda ut qui asperiores voluptas distinctio incididunt. Omnis ex iusto blanditiis nulla recusandae incididunt culpa veniam. Ea officiis atque reiciendis a quo aliquip recusandae laboris reprehenderit nihil non cillum alias. Possimus repellat voluptatum tenetur culpa mollitia earum ullamco dolor distinctio odio labore. Autem corrupti exercitation mollit reiciendis ducimus dignissimos at facere in consequat eos occaecat placeat labore asperiores. Reprehenderit facere dignissimos blanditiis recusandae dolores odio hic culpa a nobis voluptates est mollitia nulla pariatur. Asperiores reprehenderit labore delectus cupiditate doloribus duis culpa molestias tenetur recusandae provident ex commodo aute. Deserunt veniam repellat incididunt fugiat aliquip non sapiente dolores voluptas cupiditate.</p>
+        <p>Dolores officia minim deserunt blanditiis animi odio maiores. Consectetur ea provident distinctio aute aliquip vero irure eiusmod.</p>
+      </div>
+    </dialog>
+
+    <dialog class="think-modal" id="think-2">
+      <button class="close" type="button" onclick="this.closest('dialog').close()" aria-label="Close">&#10005;</button>
+      <div class="content">
+        <h2>Foresight is a contact sport</h2>
+        <p class="dek">In tempore eu pariatur nihil deleniti assumenda tempor doloribus</p>
+        <p class="byline">June 9, 2026 &middot; Alex Anderson</p>
+        <hr />
+        <p>Minim cum eu dolores vero culpa do velit repellendus. Reiciendis eligendi quibusdam sapiente odio do elit soluta eveniet excepturi cumque voluptas perferendis cillum. Nulla id anim adipiscing cupiditate fugiat duis reiciendis cum voluptatibus pariatur officiis possimus perferendis soluta libero. Officiis esse quod saepe doloribus at hic blanditiis a sapiente voluptatibus libero rerum. Nam rerum earum officia cupiditate cillum odio recusandae quas quos delectus maiores placeat sunt hic. Soluta enim animi dolor sint laboris.</p>
+        <p>Dignissimos mollit laboris alias duis odio laborum sunt. Voluptas sed labore cum fugiat at adipiscing minim. Magna adipiscing eiusmod consectetur eligendi eos commodo velit excepteur. Lorem nihil tempor at reprehenderit do ipsum distinctio nisi voluptatum mollitia hic elit dolores officiis iusto. Voluptate repudiandae deserunt quis molestias ullamco adipiscing officiis commodo maiores quo earum voluptatibus cupiditate. Animi accusamus iusto omnis amet aute labore vero sed consequat. Eu nostrud rerum anim reiciendis sed at quibusdam.</p>
+        <p>Ad mollit cum eos voluptas blanditiis perferendis ipsum reprehenderit do nihil placeat. Nisi voluptatibus veniam est ullamco exercitation consectetur pariatur anim qui. Alias saepe rerum quas repellat cumque culpa sunt. Voluptas reiciendis consectetur ut omnis perferendis pariatur nostrud recusandae soluta amet maiores ex deleniti. Dolores amet facere exercitation ullamco cupidatat debitis et earum saepe sunt aliqua ipsum. Adipiscing eligendi dolores enim officia hic occaecat aliquip quo saepe aute distinctio. Ea eos ad similique quo.</p>
+        <img class="inline" src="images/placeholder.jpg" alt="" loading="lazy" />
+        <p>Adipiscing voluptates tempor a deleniti tempore necessitatibus irure eligendi. Itaque perferendis recusandae omnis hic atque minus anim velit accusamus assumenda minim. Aliqua tempore nulla in possimus magna veniam do commodo. Impedit anim provident autem fugiat perferendis voluptatum nisi voluptate voluptas nostrud maiores. Voluptatibus eos eu velit saepe id maxime tempore in eveniet autem. Nihil pariatur quo reiciendis ut itaque ducimus maxime. Facere voluptates cum provident ad deserunt asperiores sint maxime cumque dolor molestias. Perferendis eveniet nulla nostrud amet maxime qui nihil exercitation impedit.</p>
+        <p>Ducimus occaecat hic aute dolor temporibus itaque vero voluptatibus fugiat eveniet. Aliqua nam lorem earum asperiores dolore similique necessitatibus odio sapiente elit. Distinctio fugiat maxime eos duis ut esse a cumque. Atque voluptate dolor praesentium eveniet lorem soluta sed repellat cumque quibusdam proident dolores a duis. Repellat quos enim accusamus molestias similique quas quo maiores quis reiciendis sunt doloribus reprehenderit delectus. Dolores eiusmod anim necessitatibus alias blanditiis et nisi cumque. Culpa excepturi tempore enim similique necessitatibus cum cillum a quibusdam deleniti saepe duis. Qui dignissimos cupiditate velit exercitation id voluptates sint eligendi excepteur tempore aute duis anim odio. Optio quod animi blanditiis sapiente obcaecati deleniti.</p>
+        <p>Nobis dolores minus itaque fugiat accusamus libero autem recusandae. Excepteur molestias cumque commodo elit ullamco nam cillum tempore. Temporibus dolor obcaecati id impedit praesentium voluptates reprehenderit cum. Non a nostrud irure proident provident vero omnis cum veniam animi sint at. Tempor mollitia eligendi et irure nulla dolore repellendus quibusdam dignissimos consequat. Alias aliquip mollitia minus mollit ut quo repudiandae hic excepturi quis reiciendis repellat. Quod rerum eu facere nihil perferendis debitis tempor laboris commodo ex sapiente fugiat enim quo. Necessitatibus dolor vero laboris nam officia fugiat adipiscing in assumenda quis mollitia. Incididunt repudiandae est dolore itaque aute elit sapiente et non ipsum alias mollitia.</p>
+        <img class="inline" src="images/placeholder.jpg" alt="" loading="lazy" />
+        <p>Est aute eligendi hic lorem consequat aliquip at laboris eveniet culpa ut qui cumque mollitia quo. Delectus esse reiciendis ullamco reprehenderit sunt fugiat optio non corrupti animi repellendus irure assumenda consequat minus. Corrupti exercitation repudiandae dignissimos praesentium doloribus hic blanditiis mollit omnis aute ullamco elit. Non culpa occaecat quo eiusmod aute adipiscing iusto repudiandae incididunt deserunt irure molestias do cupidatat laboris. Excepteur quis saepe deleniti sunt velit cupiditate ducimus maiores magna. Possimus sed rerum corrupti ea dignissimos amet culpa omnis similique accusamus repellat quo perferendis. Repellendus commodo eu officiis rerum distinctio nihil repudiandae eos sint quibusdam. Voluptates mollitia quas aliqua eu nobis officia commodo dolores sunt repellat. Exercitation sit elit cupidatat molestias labore.</p>
+        <p>Eos animi autem aliqua omnis voluptates amet praesentium consequat culpa reprehenderit esse optio dolore officiis blanditiis. Tenetur recusandae id reprehenderit corrupti mollit non similique quo. Placeat id culpa et accusamus at aute quo temporibus ex rerum minus repudiandae cumque praesentium qui. Deserunt labore asperiores perferendis quis lorem ut impedit repellendus quod anim. Dignissimos exercitation soluta reiciendis cum alias tenetur magna necessitatibus officia blanditiis adipiscing elit recusandae eiusmod consequat. Proident obcaecati est repellat incididunt in atque ullamco veniam duis. Aute sed quas reiciendis odio repudiandae incididunt libero animi nostrud cum laboris.</p>
+        <p>Soluta ducimus recusandae praesentium reiciendis reprehenderit adipiscing tempor animi temporibus dolor nam asperiores. Enim delectus temporibus assumenda omnis est pariatur esse. Amet libero pariatur atque consectetur eiusmod at officia. Dolore cum nisi magna laborum anim sint ullamco ipsum maxime ad sapiente blanditiis officia. Perferendis maiores doloribus maxime assumenda commodo voluptate consequat. Eligendi ut pariatur maiores autem temporibus officiis esse tenetur commodo nam in consectetur vero excepteur. Facere vero quibusdam voluptates saepe sint voluptas temporibus odio officia. Sed minus elit assumenda quos adipiscing recusandae accusamus dignissimos at eveniet rerum soluta. Saepe at asperiores velit necessitatibus voluptatum cum omnis nisi delectus laborum impedit aliquip repellendus alias rerum. Impedit debitis cum.</p>
+        <img class="inline" src="images/placeholder.jpg" alt="" loading="lazy" />
+        <p>Cillum in anim fugiat placeat debitis a iusto molestias maxime corrupti dolor quod. Proident rerum exercitation aliquip dolor cum obcaecati excepturi. Nulla cupiditate ad perferendis recusandae quod id quibusdam nostrud amet distinctio elit quos tenetur. Ut dolor provident maxime recusandae ipsum itaque proident deserunt cupiditate. Similique quos quo earum eveniet blanditiis minim sapiente culpa soluta. Cum eligendi pariatur est deserunt sunt eveniet id minus odio proident. Esse lorem maxime repudiandae cum pariatur cupidatat earum ipsum duis sunt qui minim rerum excepteur dignissimos. Consectetur dolor cum aliquip dolores do soluta voluptates cumque ea enim saepe nulla irure. Dolore odio in itaque repellat enim perferendis deleniti voluptatum.</p>
+        <p>Sunt enim possimus commodo excepteur dolores saepe cupidatat eiusmod mollitia necessitatibus et voluptate mollit nam laboris. Voluptate officia elit obcaecati ex dignissimos ullamco eligendi aliqua delectus duis. Consequat voluptas cupidatat quas consectetur amet animi reprehenderit aliqua incididunt aute tenetur possimus. Itaque atque corrupti dolore reprehenderit aliquip ipsum quis irure libero voluptate repellat consequat. Mollit similique quis excepteur temporibus sunt facere do assumenda. Distinctio excepteur perferendis ex eiusmod commodo optio in omnis.</p>
+        <p>Odio .</p>
+      </div>
+    </dialog>
+
+    <dialog class="think-modal" id="think-3">
+      <button class="close" type="button" onclick="this.closest('dialog').close()" aria-label="Close">&#10005;</button>
+      <div class="content">
+        <h2>Notes from the Green Supper</h2>
+        <p class="dek">Rerum qui enim ea cumque saepe mollitia ex hic</p>
+        <p class="byline">June 9, 2026 &middot; Alex Anderson</p>
+        <hr />
+        <p>Consequat nobis repudiandae dolore sit voluptates accusamus anim occaecat minus reprehenderit alias impedit velit eiusmod quos. Odio repudiandae impedit assumenda minus quibusdam duis soluta. Do duis tenetur qui accusamus temporibus quos omnis delectus. Nam asperiores placeat anim mollitia elit blanditiis esse cupiditate ullamco culpa odio praesentium ea. Itaque veniam distinctio magna facere reprehenderit consectetur atque assumenda. Ex tempor optio provident blanditiis delectus id do quas ipsum enim laboris repellat sed. Placeat deleniti iusto voluptate eiusmod mollitia molestias cum aute optio necessitatibus. Nihil ullamco delectus dignissimos.</p>
+        <p>Quos temporibus accusamus alias mollitia dolor possimus molestias consectetur optio duis. Similique eveniet libero blanditiis hic consectetur et nobis. Rerum corrupti excepturi nulla soluta excepteur molestias nobis iusto optio ullamco adipiscing. Quas sapiente officia odio est cupiditate excepteur temporibus nostrud ullamco. Similique deserunt autem eu ad mollitia qui debitis dignissimos ex sed doloribus sint. Pariatur blanditiis animi minim distinctio consequat omnis deleniti maiores dignissimos saepe possimus placeat. Facere voluptate non ipsum recusandae reiciendis temporibus officia. Rerum maiores voluptatum animi mollit magna ex laborum. Sed voluptatibus cupidatat repellendus incididunt sit itaque ex. Sapiente corrupti est consectetur perferendis repellat.</p>
+        <p>Aliquip animi commodo vero recusandae et libero officia. Ea asperiores ex eu est ducimus commodo ipsum earum quod incididunt. At odio perferendis alias voluptas ut repudiandae obcaecati lorem labore commodo tempor. Incididunt magna itaque sed veniam voluptatibus sapiente hic molestias. Molestias aliqua nam nihil impedit quos cum iusto sint provident. Ea commodo lorem cumque ad nulla eiusmod eligendi necessitatibus tempor repellendus ut a molestias. Omnis necessitatibus amet laborum qui repellat dignissimos aliqua voluptas deserunt assumenda consequat elit cupiditate. Iusto ea saepe doloribus optio laboris excepturi asperiores ullamco ipsum repudiandae irure id. Tempor perferendis quis exercitation optio.</p>
+        <img class="inline" src="images/placeholder.jpg" alt="" loading="lazy" />
+        <p>Animi ea adipiscing aliquip itaque praesentium corrupti veniam. Reiciendis doloribus est laboris exercitation et cupiditate pariatur. Est pariatur at rerum quo vero nobis minus nam. Omnis minim optio sapiente id facere esse possimus maiores itaque voluptate quod reprehenderit nostrud a quibusdam. Duis odio cupidatat in voluptatibus molestias anim repellat atque facere. Qui dolores consectetur odio recusandae cumque non fugiat cum est obcaecati itaque. Omnis recusandae proident eveniet elit itaque aliqua quod tempor mollit. Magna qui eos est sint accusamus aute excepteur.</p>
+        <p>Eos eu tempor molestias pariatur voluptas quis minim. Quis iusto deleniti do tempore debitis mollitia ipsum elit. Provident temporibus cumque earum enim sunt hic quo commodo excepturi ex ducimus repellendus. Autem doloribus vero nostrud eligendi nobis debitis atque iusto. Mollitia repellat perferendis aliquip tenetur reiciendis libero et atque. Reprehenderit nulla nobis rerum ea laboris irure provident omnis corrupti. Necessitatibus itaque quas nulla magna laboris pariatur quo tempore exercitation. Dignissimos nihil ut duis eiusmod recusandae delectus at voluptatibus libero similique maxime. Magna libero a nisi reprehenderit dignissimos exercitation excepteur sint possimus quo commodo in minus occaecat. Doloribus eu nulla non vero nobis atque elit quibusdam placeat nihil molestias quas a.</p>
+        <p>Itaque elit sint lorem laboris anim hic fugiat perferendis necessitatibus cupidatat occaecat. Culpa do sapiente quibusdam nisi praesentium voluptate duis eveniet veniam incididunt adipiscing cum anim delectus enim. Repellat amet mollitia obcaecati provident distinctio duis ad sed animi proident dolore non temporibus officia. Molestias laboris eiusmod placeat enim non esse quo a repudiandae magna repellat voluptas sunt hic. Consectetur saepe necessitatibus quod autem pariatur rerum do eos soluta nobis officiis. Cum quod deserunt lorem sunt accusamus nobis irure necessitatibus asperiores occaecat velit consectetur eu maxime sapiente. Elit aute nisi eu quibusdam hic excepteur et consectetur maxime. Excepturi placeat sed ut est maxime eiusmod.</p>
+        <img class="inline" src="images/placeholder.jpg" alt="" loading="lazy" />
+        <p>Adipiscing officia est nostrud impedit repudiandae sint cillum similique aliquip distinctio ea ut deleniti ducimus. Corrupti hic at odio elit mollitia distinctio excepturi quis labore temporibus veniam lorem ullamco amet. Sapiente do itaque ut sint reiciendis provident non recusandae animi. Nam sed cumque dolores quo veniam atque excepteur facere aliquip delectus impedit similique repellat maxime. Nihil tempore excepteur cum possimus autem mollit quibusdam itaque distinctio. Eu delectus impedit earum eiusmod voluptate consectetur eveniet quis nostrud excepturi id. Incididunt debitis eveniet similique nobis lorem aliqua occaecat. Ullamco mollitia quas nisi debitis ad sunt est incididunt voluptate.</p>
+        <p>Dolor nisi mollit voluptatum sunt officia voluptatibus omnis delectus excepturi. Sint eveniet nulla ad eiusmod nisi adipiscing exercitation non eos minim laboris quod deserunt earum distinctio. Officiis nisi deleniti quibusdam cumque proident aliquip ipsum saepe corrupti enim animi distinctio occaecat. Aliqua soluta voluptas magna maiores culpa at nam et similique id repellendus autem minim vero. Obcaecati cillum proident qui saepe repellat omnis nobis sint placeat itaque. Voluptates sed deleniti amet excepteur nostrud elit reprehenderit atque sapiente maiores et eiusmod occaecat. Ducimus hic repellendus do distinctio eveniet cupidatat voluptatum irure ullamco quibusdam. Facere quibusdam enim proident voluptate earum praesentium optio eligendi esse repellendus quas. Repudiandae perferendis officia cum voluptatum elit saepe eligendi.</p>
+        <p>Laborum alias dolor sit consequat doloribus reprehenderit repellat consectetur cillum incididunt lorem. Eveniet libero cum sed hic excepteur est sit ducimus repellendus mollitia. Nostrud debitis quas iusto at a omnis accusamus. Tempor elit assumenda do cillum at duis facere reiciendis mollitia blanditiis amet eu. Amet earum et necessitatibus eveniet alias voluptatibus possimus. Maiores eu atque pariatur aliqua aute ullamco placeat libero quibusdam rerum blanditiis eos. Praesentium doloribus voluptate molestias aute alias do facere earum anim necessitatibus dignissimos elit excepturi aliquip. Commodo blanditiis odio ullamco temporibus enim eligendi sed voluptatibus earum officiis occaecat.</p>
+        <img class="inline" src="images/placeholder.jpg" alt="" loading="lazy" />
+        <p>Pariatur nihil minus molestias incididunt dignissimos culpa do excepturi quo praesentium consequat possimus. Facere ad tenetur mollit non perferendis aliquip ea ipsum praesentium magna repellendus. Itaque saepe odio deleniti incididunt fugiat id earum eu irure reprehenderit nulla. Minus dolor irure quo ut pariatur nulla quas sint consequat in incididunt perferendis reprehenderit asperiores. Cumque laboris repellendus impedit pariatur adipiscing blanditiis ullamco consequat aliquip in. Commodo nihil libero enim occaecat ipsum nobis irure recusandae laborum dolore earum. Molestias repudiandae consectetur distinctio doloribus quibusdam placeat saepe repellat. Dolores quibusdam reprehenderit asperiores rerum.</p>
+        <p>Atque nulla corrupti cillum excepturi odio non consequat ut labore placeat. Aliquip sit velit ea maxime eligendi perferendis ducimus quis saepe. Autem cupiditate in qui obcaecati rerum delectus eligendi excepturi tempore distinctio animi voluptatum corrupti dignissimos pariatur. Sapiente officia animi at praesentium.</p>
+      </div>
+    </dialog>
+  </section>
+
+  <section>
+    <p class="label">Agency collaboration</p>
+    <p>BASIC, The Black Sheep Agency, DrawHistory, the Google Brand Studio, Grizzly, Havas CX, Human NYC, Manifest, NUU Group, Something Special Studios, SYLVAIN, TRIPTK, Upperquad, XXIX &amp; garden3D, and others.</p>
+  </section>
+
+  <section>
+    <p class="label">Brand partners</p>
+    <p>AB InBev, adidas, Airbnb, American Express, Center for Medicare &amp; Medicaid Services, Civic Nation, Colgate-Palmolive, Constellation Brands, Diageo, Duckhorn Vineyards, FIFA, General Motors, Google, Holocaust Museum Houston, the Houston Texans, Luna Luna, LVMH, Marriott International, Microsoft, Netflix, Nike, the White House, Pearson Education, PepsiCo, Saint James Joy, Spotify, Stanley 1913, Starbucks, the City of Houston, the CW, the North Face, the NBA, the RealReal, the Renault Group (Alpine Cars &amp; Racing), Toast POS, Tripadvisor, Twitter, VF Venture Foundry, Vans, WeTransfer, and others.</p>
+  </section>
+
+  <section>
+    <p class="label">The Green Supper</p>
+    <p>I'm also the host of the <a href="#">Green Supper</a>, a humble dining club hosting in Richmond, Houston, and New York City. Reach out for an invite to the next iteration ~ I hope to see you there.</p>
+
+    <div class="supper-row">
+      <img src="images/hands-rolling-fresh-pasta-on-a-floured-board.jpg" alt="Hands rolling fresh pasta on a floured board" loading="lazy" />
+      <img src="images/a-green-botanical-rose-pattern.jpg" alt="A green botanical rose pattern" loading="lazy" />
+      <img src="images/a-hand-picking-a-ripe-persimmon.jpg" alt="A hand picking a ripe persimmon" loading="lazy" />
+      <img src="images/a-horse-and-rider-mark-over-a-supper-table.jpg" alt="A horse-and-rider mark over a supper table" loading="lazy" />
+      <img src="images/green-supper-imagery.jpg" alt="Green Supper imagery" loading="lazy" />
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Contact</p>
+    <p>I'd love to know you ~ reach out &amp; let's chat.</p>
+    <div class="connect">
+      <a href="mailto:hello@accentshift.xyz">Email</a>
+      <a href="#">Linkedin</a>
+      <a href="#">Twitter</a>
+    </div>
+  </section>
+
+</main>
+
+<img id="hover-img" alt="" aria-hidden="true" />
+
+<script>
+  var PLACEHOLDER = "images/placeholder.jpg";
+  document.querySelectorAll('img[data-ph]').forEach(function (img) { img.src = PLACEHOLDER; });
+
+  // Agency hover images. Swap PLACEHOLDER per key when real images arrive.
+  var AGENCY_IMAGES = {};
+  document.querySelectorAll('.agency').forEach(function (el) {
+    AGENCY_IMAGES[el.dataset.imgKey] = PLACEHOLDER;
+  });
+
+  // per-name hover images
+  AGENCY_IMAGES["communication-arts"] = "images/hover-communication-arts.jpg";
+  AGENCY_IMAGES["new-york-times"] = "images/hover-new-york-times.jpg";
+  AGENCY_IMAGES["its-nice-that"] = "images/hover-its-nice-that.jpg";
+
+  // photo-stack layers behind each work card image
+  document.querySelectorAll('.card .stack').forEach(function (stack) {
+    var depth = parseInt(stack.dataset.stack || '1', 10);
+    var imgs = stack.querySelectorAll('img');
+    var top = imgs[imgs.length - 1];
+    // clone the top image only to fill depth beyond any real layers present
+    for (var i = imgs.length; i < depth; i++) {
+      var layer = top.cloneNode(false);
+      layer.alt = '';
+      layer.setAttribute('aria-hidden', 'true');
+      stack.insertBefore(layer, stack.firstChild);
+    }
+    // assign fan positions: nearest-behind gets layer-1, next layer-2
+    var all = stack.querySelectorAll('img');
+    for (var j = 0; j < all.length - 1; j++) {
+      all[j].classList.add('layer-' + (all.length - 1 - j));
+    }
+  });
+
+  // background shifts while Kind words is in view
+  var kindWords = document.getElementById('kind-words');
+  if (kindWords && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      document.body.classList.toggle('tinted', entries[0].isIntersecting);
+    }, { rootMargin: '-15% 0px -15% 0px' }).observe(kindWords);
+  }
+
+  var hoverImg = document.getElementById('hover-img');
+
+  function moveHoverImg(e) {
+    var pad = 20;
+    var w = hoverImg.offsetWidth || 300;
+    var h = hoverImg.offsetHeight || 300;
+    var x = Math.min(e.clientX + pad, window.innerWidth - w - pad);
+    var y = Math.min(e.clientY + pad, window.innerHeight - h - pad);
+    hoverImg.style.left = x + 'px';
+    hoverImg.style.top = y + 'px';
+  }
+
+  document.querySelectorAll('.agency').forEach(function (el) {
+    el.addEventListener('mouseenter', function (e) {
+      hoverImg.src = AGENCY_IMAGES[el.dataset.imgKey] || PLACEHOLDER;
+      hoverImg.style.display = 'block';
+      moveHoverImg(e);
+    });
+    el.addEventListener('mousemove', moveHoverImg);
+    el.addEventListener('mouseleave', function () {
+      hoverImg.style.display = 'none';
+    });
+  });
+
+  document.querySelectorAll('dialog.think-modal').forEach(function (d) {
+    d.addEventListener('click', function (e) {
+      if (e.target === d) d.close();
+    });
+  });
+</script>
+
+</body>
+</html>
