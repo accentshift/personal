@@ -726,6 +726,16 @@
     opacity: 0;
     pointer-events: none;
   }
+
+  /* mobile: no blur at all — the gradient itself does all the fading, so no box can render */
+  @media (max-width: 700px) {
+    .hero-glow {
+      filter: none;
+      top: -30%;
+      height: 160%;
+      width: 100vw;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1553,9 +1563,10 @@
         lastIdx = idx;
         glows.forEach(function (g) {
           if (!g.isConnected) return;
+          var small = window.matchMedia('(max-width: 700px)').matches;
           var stops = g.classList.contains('loader-glow')
             ? ' 0%, ' + COLORS[idx] + ' 18%, transparent 64%)'
-            : ' 0%, ' + COLORS[idx] + ' 42%, transparent 74%)';
+            : (small ? ' 0%, transparent 58%)' : ' 0%, ' + COLORS[idx] + ' 42%, transparent 74%)');
           g.style.background = 'radial-gradient(ellipse at center, ' + COLORS[idx] + stops;
         });
       }
