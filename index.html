@@ -666,11 +666,11 @@
 
   .hero-glow {
     position: absolute;
-    top: -8%;
+    top: -12%;
     left: 50%;
     transform: translateX(-50%);
-    width: min(1560px, 100vw);
-    height: 116%;
+    width: min(1600px, 100vw);
+    height: 124%;
     background: radial-gradient(ellipse at center, var(--glow, transparent) 0%, transparent 80%);
     filter: blur(48px);
     opacity: 0.7;
@@ -1551,8 +1551,13 @@
       var idx = Math.floor(((now - start) % LOOP_MS) / FRAME_MS);
       if (idx !== lastIdx) {
         lastIdx = idx;
-        var bg = 'radial-gradient(ellipse at center, ' + COLORS[idx] + ' 0%, ' + COLORS[idx] + ' 18%, transparent 64%)';
-        glows.forEach(function (g) { if (g.isConnected) g.style.background = bg; });
+        glows.forEach(function (g) {
+          if (!g.isConnected) return;
+          var stops = g.classList.contains('loader-glow')
+            ? ' 0%, ' + COLORS[idx] + ' 18%, transparent 64%)'
+            : ' 0%, ' + COLORS[idx] + ' 42%, transparent 74%)';
+          g.style.background = 'radial-gradient(ellipse at center, ' + COLORS[idx] + stops;
+        });
       }
       requestAnimationFrame(tick);
     }
