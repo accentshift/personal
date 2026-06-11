@@ -37,7 +37,6 @@
     line-height: 1.55;
     color: var(--ink);
     background: #ffffff;
-    transition: background-color 1400ms ease;
     padding: 0 24px;
     text-align: left;
   }
@@ -48,9 +47,7 @@
     padding: 0 0 12vh;
   }
 
-  body.tinted { background-color: #d4d4d4; }
-  body.tinted-sand { background-color: #d4d4d4; }
-
+    
   /* ---------- site header: name left, nav right of center ---------- */
 
   .site-header {
@@ -503,9 +500,10 @@
 
   .work-page .close {
     font: inherit;
-    position: fixed;
+    position: sticky;
     top: 20px;
-    right: 20px;
+    float: right;
+    margin: 20px -4px -56px 0;
     z-index: 2;
     width: 36px;
     height: 36px;
@@ -653,6 +651,38 @@
   .work-page .close:focus {
     outline: none;
   }
+
+  /* mobile: masthead copy hugs the same left edge as the gif */
+  @media (max-width: 700px) {
+    .masthead .name {
+      width: calc(100vw - 48px);
+      margin-left: calc(50% - 50vw + 24px);
+    }
+  }
+
+  /* ---------- ambient glow synced to the masthead gif ---------- */
+
+  .hero-wrap { position: relative; }
+
+  .hero-glow {
+    position: absolute;
+    top: -22%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1640px, 100vw);
+    height: 144%;
+    background: radial-gradient(ellipse at center, var(--glow, transparent) 0%, transparent 80%);
+    filter: blur(48px);
+    opacity: 0.7;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .masthead .hero { position: relative; z-index: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-glow { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -670,6 +700,7 @@
   <div class="masthead">
     <h1 class="name">Alex Anderson is a cultural theorist &amp; brand strategy leader. Recent projects include work for Netflix, Pearson Education, and Medicare.</h1>
     <div class="hero-wrap">
+      <div class="hero-glow" aria-hidden="true"></div>
       <img class="hero" src="images/the-twitter-bird-sign-on-the-company-headquarters.gif" alt="The Twitter bird sign on the company headquarters" />
     </div>
     <p class="statement">I help teams express themselves uniquely (&amp; take themselves less seriously).</p>
@@ -1414,19 +1445,6 @@
   });
 
   // background shifts while Kind words is in view
-  var masthead = document.querySelector('.masthead');
-  if (masthead && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      document.body.classList.toggle('tinted-sand', entries[0].isIntersecting);
-    }, { rootMargin: '-15% 0px -15% 0px' }).observe(masthead);
-  }
-
-  var kindWords = document.getElementById('kind-words');
-  if (kindWords && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      document.body.classList.toggle('tinted', entries[0].isIntersecting);
-    }, { rootMargin: '-15% 0px -15% 0px' }).observe(kindWords);
-  }
 
   // copy email to clipboard with a confirmation toast
   var toastTimer = null;
@@ -1469,6 +1487,29 @@
       closePage(d);
     });
   });
+
+  // ambient glow: colors sampled per frame from the masthead gif (1200ms loop)
+  (function () {
+    var glow = document.querySelector('.hero-glow');
+    var hero = document.querySelector('.masthead .hero');
+    if (!glow || !hero) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var COLORS = ['#5ed17d', '#d15e77', '#d1815e', '#d15e00', '#d18c52', '#1067d1', '#a5d15e', '#e3d066'];
+    var FRAME_MS = 150, LOOP_MS = COLORS.length * FRAME_MS;
+    var start = null, lastIdx = -1;
+    function tick(now) {
+      if (start === null) start = now;
+      var idx = Math.floor(((now - start) % LOOP_MS) / FRAME_MS);
+      if (idx !== lastIdx) {
+        lastIdx = idx;
+        glow.style.background =
+          'radial-gradient(ellipse at center, ' + COLORS[idx] + ' 0%, ' + COLORS[idx] + ' 30%, transparent 78%)';
+      }
+      requestAnimationFrame(tick);
+    }
+    function begin() { requestAnimationFrame(tick); }
+    if (hero.complete) { begin(); } else { hero.addEventListener('load', begin); }
+  })();
 </script>
 
 </body>
