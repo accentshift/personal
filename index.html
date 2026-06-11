@@ -683,9 +683,58 @@
   @media (prefers-reduced-motion: reduce) {
     .hero-glow { display: none; }
   }
+
+  /* ---------- loading screen ---------- */
+
+  .loader {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 700ms ease;
+  }
+
+  .loader-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(1100px, 90vw);
+    height: 60vh;
+    filter: blur(64px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .loader .loader-title {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(28px, 3.6vw, 44px);
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+
+
+  .loader.done {
+    opacity: 0;
+    pointer-events: none;
+  }
 </style>
 </head>
 <body>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-glow" aria-hidden="true"></div>
+  <span class="loader-title">The Strategy Practice<br />of Alex Anderson</span>
+</div>
+
 
 <main>
 
@@ -1489,10 +1538,10 @@
   });
 
   // ambient glow: colors sampled per frame from the masthead gif (1200ms loop)
+  // starts on the loading screen and carries through to the masthead
   (function () {
-    var glow = document.querySelector('.hero-glow');
-    var hero = document.querySelector('.masthead .hero');
-    if (!glow || !hero) return;
+    var glows = Array.prototype.slice.call(document.querySelectorAll('.hero-glow, .loader-glow'));
+    if (!glows.length) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var COLORS = ['#5ed17d', '#d15e77', '#d1815e', '#d15e00', '#d18c52', '#1067d1', '#a5d15e', '#e3d066'];
     var FRAME_MS = 150, LOOP_MS = COLORS.length * FRAME_MS;
@@ -1502,13 +1551,29 @@
       var idx = Math.floor(((now - start) % LOOP_MS) / FRAME_MS);
       if (idx !== lastIdx) {
         lastIdx = idx;
-        glow.style.background =
-          'radial-gradient(ellipse at center, ' + COLORS[idx] + ' 0%, ' + COLORS[idx] + ' 30%, transparent 78%)';
+        var bg = 'radial-gradient(ellipse at center, ' + COLORS[idx] + ' 0%, ' + COLORS[idx] + ' 30%, transparent 78%)';
+        glows.forEach(function (g) { if (g.isConnected) g.style.background = bg; });
       }
       requestAnimationFrame(tick);
     }
-    function begin() { requestAnimationFrame(tick); }
-    if (hero.complete) { begin(); } else { hero.addEventListener('load', begin); }
+    requestAnimationFrame(tick);
+  })();
+
+  // loading screen: brief hold, then fade out
+  (function () {
+    var loader = document.getElementById('loader');
+    if (!loader) return;
+    var MIN_MS = 1900;
+    var shownAt = performance.now();
+    function dismiss() {
+      var wait = Math.max(0, MIN_MS - (performance.now() - shownAt));
+      setTimeout(function () {
+        loader.classList.add('done');
+        loader.addEventListener('transitionend', function (e) { if (e.target === loader) loader.remove(); });
+      }, wait);
+    }
+    if (document.readyState === 'complete') { dismiss(); }
+    else { window.addEventListener('load', dismiss); }
   })();
 </script>
 
