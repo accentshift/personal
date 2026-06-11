@@ -91,13 +91,14 @@
   }
 
   .masthead .name {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    font-size: clamp(48px, 8vw, 88px);
+    width: min(1015px, calc(100vw - 96px));
+    margin-left: calc(50% - min(1400px, calc(100vw - 48px)) / 2 + 48px);
+    font-size: clamp(28px, 3.6vw, 44px);
     font-weight: 500;
-    line-height: 1.02;
-    letter-spacing: -0.03em;
-    white-space: nowrap;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-align: left;
+    text-wrap: balance;
     margin-bottom: 12vh;
   }
 
@@ -667,11 +668,11 @@
   </header>
 
   <div class="masthead">
-    <h1 class="name">Alex Anderson</h1>
+    <h1 class="name">Alex Anderson is a cultural theorist &amp; brand strategy leader. Recent projects include work for Netflix, Pearson Education, and Medicare.</h1>
     <div class="hero-wrap">
       <img class="hero" src="images/the-twitter-bird-sign-on-the-company-headquarters.gif" alt="The Twitter bird sign on the company headquarters" />
     </div>
-    <p class="statement">A brand strategy leader helping teams express themselves uniquely (&amp; take themselves less seriously).</p>
+    <p class="statement">I help teams express themselves uniquely (&amp; take themselves less seriously).</p>
   </div>
 
   <section class="intro" style="margin-top:0">
@@ -1092,7 +1093,7 @@
 
   <section id="play">
     <p class="label">The Green Supper</p>
-    <p>I'm also the host of the <a href="#">Green Supper</a>, a humble dining club hosting in Richmond, Houston, and New York City. Reach out for an invite to the next iteration ~ I hope to see you there.</p>
+    <p>I'm also the host of the Green Supper, a humble dining club hosting in Richmond, Houston, and New York City. Reach out for an invite to the next iteration ~ I hope to see you there.</p>
 
     <div class="supper-row">
       <img src="images/hands-rolling-fresh-pasta-on-a-floured-board.webp" alt="Hands rolling fresh pasta on a floured board" loading="lazy" />
