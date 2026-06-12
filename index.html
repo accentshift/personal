@@ -776,6 +776,23 @@
     width: calc(min(1200px, calc(100vw - 96px)) - 48px);
     margin-left: calc((var(--col) - (min(1200px, calc(100vw - 96px)) - 48px)) / 2);
   }
+
+  /* mobile: the work sheet goes full-bleed */
+  @media (max-width: 700px) {
+    dialog.work-page {
+      width: 100vw;
+      margin: 0;
+      border-radius: 0;
+    }
+    .work-page .bleed {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+    }
+    .work-page .wp-name {
+      width: calc(100vw - 48px);
+      margin-left: calc(50% - 50vw + 24px);
+    }
+  }
 </style>
 </head>
 <body>
