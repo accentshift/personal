@@ -51,12 +51,18 @@
   /* ---------- site header: name left, nav right of center ---------- */
 
   .site-header {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 150;
     display: flex;
     justify-content: center;
-    padding: 28px 24px 0;
+    padding: 28px 24px;
+    pointer-events: none;
   }
+
+  .site-nav { pointer-events: auto; }
 
   .site-nav {
     display: flex;
@@ -70,6 +76,9 @@
     padding: 5px 10px;
     margin: -5px -10px;
     border-radius: 4px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .site-nav a::before, .site-nav a::after { content: none; }
