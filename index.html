@@ -492,12 +492,13 @@
   /* ---------- work pop-up page ---------- */
 
   dialog.work-page {
-    width: 100vw;
+    width: min(1200px, calc(100vw - 96px));
     height: 100vh;
     max-width: none;
     max-height: none;
-    margin: 0;
+    margin: 0 auto;
     border: none;
+    border-radius: 4px 4px 0 0;
     padding: 0 24px;
     background: #ffffff;
     color: var(--ink);
@@ -510,24 +511,31 @@
   dialog.work-page::-webkit-scrollbar { display: none; }
 
   .work-page .close {
+    appearance: none;
+    -webkit-appearance: none;
     font: inherit;
-    position: sticky;
-    top: 20px;
-    float: right;
-    margin: 20px -4px -56px 0;
-    z-index: 2;
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 50%;
-    background: #ededed;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.55;
     color: var(--ink);
+    position: sticky;
+    top: 28px;
+    display: block;
+    width: fit-content;
+    margin: 28px auto -65px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     cursor: pointer;
-    transition: background 120ms ease;
+    z-index: 2;
   }
 
   .work-page .close:hover, .work-page .close:focus-visible {
-    background: #d4d4d4;
+    background: #ececec;
+    color: var(--ink);
   }
 
   .wp-main {
@@ -746,6 +754,27 @@
       height: 160%;
       width: 100vw;
     }
+  }
+
+  /* work sheet: backdrop + internal full-bleed rows track the sheet, not the viewport */
+  dialog.work-page::backdrop {
+    background: rgba(17, 17, 17, 0.3);
+  }
+
+  .work-page .bleed {
+    width: min(1200px, calc(100vw - 96px));
+    margin-left: calc((var(--col) - min(1200px, calc(100vw - 96px))) / 2);
+  }
+
+  .work-page .carousel {
+    scroll-padding-left: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .work-page .wp-name {
+    width: calc(min(1200px, calc(100vw - 96px)) - 48px);
+    margin-left: calc((var(--col) - (min(1200px, calc(100vw - 96px)) - 48px)) / 2);
   }
 </style>
 </head>
@@ -1221,10 +1250,10 @@
 
 
 <dialog class="work-page" id="work-page">
-  <button class="close" type="button" onclick="closePage(this.closest('dialog'))" aria-label="Close">&#10005;</button>
+  <button class="close" type="button" onclick="closePage(this.closest('dialog'))">Close</button>
   <div class="wp-main">
     <div class="wp-masthead">
-      <h1 class="wp-name">Organizing and activating<br />against uncertainty</h1>
+      <h1 class="wp-name">Organizing<br />and activating<br />against uncertainty</h1>
       <p class="label">How I work</p>
       <p>My strategy practice is generous and focused on building camaraderie and conviction across teams.</p>
       <p>I am an enthusiastic systems thinker, having led teams to build meaningful business models, product &amp; brand strategies, digital environments, and experiences.</p>
@@ -1555,6 +1584,12 @@
     d.addEventListener('cancel', function (e) {
       e.preventDefault();
       closePage(d);
+    });
+    d.addEventListener('click', function (e) {
+      if (e.target === d) {
+        var r = d.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right) closePage(d);
+      }
     });
   });
 
